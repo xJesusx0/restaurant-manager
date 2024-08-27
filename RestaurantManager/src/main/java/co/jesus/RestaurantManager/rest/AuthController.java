@@ -1,20 +1,9 @@
 package co.jesus.RestaurantManager.rest;
 
-import co.jesus.RestaurantManager.database.DatabaseOperation;
-import co.jesus.RestaurantManager.database.DatabaseOperationHandler;
 import co.jesus.RestaurantManager.database.operations.UsersOperations;
 import co.jesus.RestaurantManager.entities.User;
-import com.mysql.cj.log.Log;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.crypto.Data;
-import java.security.SecureRandom;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 @RestController
 @RequestMapping("/auth")
@@ -36,14 +25,14 @@ public class AuthController {
 
         if(username == null || password == null || username.isBlank() || password.isBlank()){
             return ResponseEntity.status(401)
-                    .body(new AccessTokenResponse(" "));
+                    .body(new LoginResponse("","Campos vacios",""));
         }
         
         User user = UsersOperations.validateLogin(username,password);
 
         if(user == null){
             return ResponseEntity.status(401)
-                    .body(new AccessTokenResponse(""));
+                    .body(new LoginResponse("","Datos invalidos",""));
         }
 
         int id = user.getId();
@@ -53,7 +42,7 @@ public class AuthController {
         String token = JwtUtil.generateToken(id,name,roleId);
         System.out.println(token);
         return ResponseEntity.status(200)
-                .body(new AccessTokenResponse(token));
+                .body(new LoginResponse(token,"Login exitoso",String.valueOf(roleId)));
     }
 
 }
@@ -84,11 +73,15 @@ class LoginBody {
     }
 }
 
-class AccessTokenResponse{
+class LoginResponse{
     private String access_token;
+    private String message;
+    private String roleId;
 
-    public AccessTokenResponse(String access_token){
+    public LoginResponse(String access_token, String message,String roleId){
         this.access_token = access_token;
+        this.message = message;
+        this.roleId = roleId;
     }
 
     public String getAccess_token() {
@@ -97,5 +90,21 @@ class AccessTokenResponse{
 
     public void setAccess_token(String access_token) {
         this.access_token = access_token;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getRole() {
+        return roleId;
+    }
+
+    public void setRole(String roleId) {
+        this.roleId = roleId;
     }
 }
