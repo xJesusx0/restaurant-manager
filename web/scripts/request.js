@@ -1,37 +1,28 @@
 const request = async (method, url, data = null) => {
-    const token = localStorage.getItem('access_token');
-    //console.log(token)
     const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
     };
 
     const requestOptions = {
-        url: url,
         method: method,
         headers: headers,
     };
 
-    if (method !== 'GET' && data) {
-        requestOptions.data = data;
+    if (method !== 'GET' && data !== null) {
+        requestOptions.body = JSON.stringify(data);
     }
 
     try {
-        const response = await axios(requestOptions);
-        return response.data;
-    } catch (error) {
-        if (error.response) {
-            console.error(error.response.data)
+        const response = await fetch(url, requestOptions);
 
-            if(error.response.data.message){
-                alert(error.response.data.message)
-            }
-
-            throw new Error(`Error ${error.response.status}`);
-        } else if (error.request) {
-            throw new Error('No response received from server');
-        } else {
-            throw new Error(`Request failed: ${error.message}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
+
+        const responseData = await response.json();
+        return responseData;
+    } catch (error) {
+        console.error('Request Error:', error);
+        throw error;
     }
 };
