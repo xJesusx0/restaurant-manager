@@ -1,5 +1,6 @@
 package co.jesus.RestaurantManager.rest;
 
+import co.jesus.RestaurantManager.database.DatabaseOperationHandler;
 import co.jesus.RestaurantManager.database.operations.EmployeesOperations;
 import co.jesus.RestaurantManager.entities.Employee;
 import co.jesus.RestaurantManager.entities.ErrorResponse;
@@ -38,7 +39,19 @@ public class AdminController {
         }
 
         return ResponseEntity.status(200).body(new SimpleResponse("Actualizacion exitosa"));
+    }
 
+    @GetMapping("/get-employee-by-id")
+    public ResponseEntity getEmployeeById(@RequestParam("employeeId") int employeeId){
+        
+        Employee employee = EmployeesOperations.getEmployeeById(employeeId);
+
+        if(employee == null){
+            return ResponseEntity.status(404)
+                    .body(new ErrorResponse("No se encontro un empleado con esa id"));
+        }
+        return ResponseEntity.status(200)
+                .body(employee);
     }
 
 }
