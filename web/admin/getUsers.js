@@ -45,10 +45,9 @@ const getUsers = async () => {
     }
 };
 
-const editUser = async (employeeId) => {
+const editUser = (employeeId) => {
     console.log(`Modificar usuario con ID: ${employeeId}`);
-
-
+    window.location.href = `edit-employee/edit.html?employeeId=${employeeId}`;
 };
 
 const changeStatus = async (employeeId) => {
