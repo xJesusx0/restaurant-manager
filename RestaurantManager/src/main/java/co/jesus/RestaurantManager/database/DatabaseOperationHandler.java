@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseOperationHandler {
-    public static void handreOperation(DatabaseOperation operation){
+    public static void handleOperation(DatabaseOperation operation){
         Connection connection = DatabaseConnector.connect();
 
         if (connection == null){
