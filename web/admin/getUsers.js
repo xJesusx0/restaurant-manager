@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const renderTable = async () => {
-    const users = await getUsers(); 
+    const users = await getUsers();
     const tableBody = document.getElementById('table-body');
 
     tableBody.innerHTML = '';
@@ -25,7 +25,7 @@ const renderTable = async () => {
             <td>${user.status}</td>
             <td>
                 <button class="btn btn-warning btn-sm me-2" onclick="editUser(${user.employeeId})">Modificar</button>
-                <button class="btn btn-danger btn-sm" onclick="changeStatus(${user.employeeId})">Inactivar</button>
+                <button class="btn btn-danger btn-sm" onclick="changeStatus(${user.employeeId})">Cambiar estado</button>
             </td>
         `;
 
@@ -35,7 +35,7 @@ const renderTable = async () => {
 
 const getUsers = async () => {
     const url = `${config.SpringApi}/admin/get-employees`;
-    
+
     try {
         const response = await request('GET', url);
         return response;
@@ -45,10 +45,25 @@ const getUsers = async () => {
     }
 };
 
-const editUser = (employeeId) => {
+const editUser = async (employeeId) => {
     console.log(`Modificar usuario con ID: ${employeeId}`);
+
+
 };
 
-const changeStatus = (employeeId) => {
+const changeStatus = async (employeeId) => {
     console.log(`Cambiar estado a inactivo para usuario con ID: ${employeeId}`);
+    const url = `${config.SpringApi}/admin/update-employee-status`
+    const data = {
+        'employeeId': employeeId
+    };
+
+    console.log(employeeId)
+    try {
+        const response = await request('PUT', url, data);
+        alert(response.response);
+        location.reload();
+    } catch (error) {
+        console.error('Error al modificar el usuario:', error);
+    }
 };
