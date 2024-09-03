@@ -26,7 +26,7 @@ public class UsersOperations {
             }
         };
 
-        DatabaseOperationHandler.handreOperation(GetUsers);
+        DatabaseOperationHandler.handleOperation(GetUsers);
         return String.join(",", names);
     }
 
@@ -62,7 +62,7 @@ public class UsersOperations {
             }
         };
 
-        DatabaseOperationHandler.handreOperation(ValidateLogin);
+        DatabaseOperationHandler.handleOperation(ValidateLogin);
 
         return users[0];
     }
