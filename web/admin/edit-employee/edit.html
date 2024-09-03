@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empleado</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Editar Empleado</h2>
+        <form id="employeeForm">
+            <div class="form-group">
+                <label for="employeeId">ID de Empleado</label>
+                <input type="text" class="form-control" id="employeeId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Nombre</label>
+                <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Apellido</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="text" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="hireDate">Fecha de Contratación</label>
+                <input type="date" class="form-control" id="hireDate" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Posición</label>
+                <input type="text" class="form-control" id="position" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Estado</label>
+                <input type="text" class="form-control" id="status" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/config/config.js"></script>
+    <script src="/scripts/request.js"></script>
+    <script src="edit.js"></script>
+</body>
+</html>
