@@ -3,9 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mesero Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Restaurant Name</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Mis Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Historial</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Notificaciones <span class="badge bg-danger">3</span></button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Dashboard Summary -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Pedidos Actuales</h5>
+                                <p class="card-text">Número de pedidos en curso.</p>
+                                <h3>12</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Pedidos Completados</h5>
+                                <p class="card-text">Número de pedidos completados hoy.</p>
+                                <h3>45</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Pedidos Pendientes</h5>
+                                <p class="card-text">Número de pedidos pendientes de preparar.</p>
+                                <h3>3</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success mb-5"> <a class="text-white" href="add-order/add.html">Agregar un pedido</a></button>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Lista de Pedidos</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mesa</th>
+                            <th>Platillos</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>Pizza Margarita</td>
+                            <td>2</td>
+                            <td><span class="badge bg-warning">Preparando</span></td>
+                            <td>
+                                <button class="btn btn-success btn-sm">Marcar como Listo</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">Detalles</button>
+                            </td>
+                        </tr>
+                        <!-- More rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Order Details Modal -->
+        <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderDetailsModalLabel">Detalles del Pedido</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Order details content -->
+                        <p><strong>Mesa:</strong> 5</p>
+                        <p><strong>Platillos:</strong> Pizza Margarita x 2</p>
+                        <p><strong>Notas:</strong> Sin cebolla.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
