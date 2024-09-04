@@ -64,7 +64,6 @@ public class EmployeesOperations {
                     ResultSet resultSet = statement.executeQuery();
 
                     if(resultSet.next()){
-                        System.out.println("o waos");
                         int empId = resultSet.getInt("employee_id");
                         String firstName = resultSet.getString("first_name");
                         String lastName = resultSet.getString("last_name");
@@ -123,5 +122,38 @@ public class EmployeesOperations {
         DatabaseOperationHandler.handleOperation(ChangeStatus);
 
         return rowsAffectedStatus[0];
+    }
+
+    public static int updateEmployee (Employee employee){
+        int[] rowsAffectedContainer = {0};
+
+        DatabaseOperation UpdateEmployee = new DatabaseOperation() {
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                String query = "UPDATE employees SET first_name = ?, last_name = ?, email = ?, phone = ?, hire_date = ?, position = ? WHERE employee_id = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+
+                statement.setString(1, employee.getFirstName());
+                statement.setString(2, employee.getLastName());
+                statement.setString(3, employee.getEmail());
+                statement.setString(4, employee.getPhone());
+
+                LocalDate hireDate = employee.getHireDate();
+                java.sql.Date sqlHireDate = java.sql.Date.valueOf(hireDate);
+
+                statement.setDate(5, sqlHireDate);
+                statement.setString(6, employee.getPosition());
+                statement.setInt(7, employee.getEmployeeId()); // Suponiendo que employee_id es un entero
+
+                int rowsAffected = statement.executeUpdate();
+
+                rowsAffectedContainer[0] = rowsAffected;
+
+            }
+        };
+
+        DatabaseOperationHandler.handleOperation(UpdateEmployee);
+
+        return rowsAffectedContainer[0];
     }
 }
