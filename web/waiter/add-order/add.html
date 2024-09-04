@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <script src="/config/config.js"></script>
+    <script src="/scripts/request.js"></script>
+    <script src="addOrder.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container table-container">
+        <h1>Available Dishes</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="dishesTableBody">
+                <!-- Table rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <div class="container" id="order-container">
+        <h3>Order Summary</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Dish Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+                
+            </tbody>
+        </table>
+        <div class="text-right">
+            <strong>Total Order Price: $<span id="totalOrderPrice">0.00</span></strong>
+        </div>
+    </div>
+    
+</body>
+</html>
