@@ -54,6 +54,26 @@ public class AdminController {
                 .body(employee);
     }
 
+    @PutMapping("/update-employee")
+    public ResponseEntity updateEmployee(@RequestBody Employee employee){
+
+        System.out.println(employee);
+
+        int rowsAffected = EmployeesOperations.updateEmployee(employee);
+
+        if(rowsAffected == 0){
+            return ResponseEntity.status(404)
+                    .body(new ErrorResponse("No se modifico ningun usuario"));
+        }
+
+        if(rowsAffected != 1){
+            return ResponseEntity.status(409)
+                    .body(new ErrorResponse("Se han actualizado multiples registros"));
+        }
+
+        return ResponseEntity.status(200).body(new SimpleResponse("Actualizacion exitosa"));
+    }
+
 }
 
 class EmployeesModificationBody {
